@@ -13,8 +13,9 @@ class BookmarksController < ApplicationController
 
   def create
     @bookmark = Bookmark.new(bookmark_params)
+    # we can get the list id from the url, theres no need to worry about
+    # funny business in a form and therefore no need to permit list_id
     @bookmark.list = @list
-    # raise
     if @bookmark.save
       redirect_to list_path(@list)
     else

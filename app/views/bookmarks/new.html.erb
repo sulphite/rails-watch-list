@@ -1,7 +1,9 @@
-<h1>Bookmarks#new</h1>
+<div class="card my-3 mx-auto p-3" style="max-width: 500px;">
+<h1>new bookmark</h1>
 
 <%= simple_form_for [@list, @bookmark] do |f| %>
   <%= f.association :movie %>
   <%= f.input :comment %>
-  <%= f.button :submit %>
+  <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
+</div>

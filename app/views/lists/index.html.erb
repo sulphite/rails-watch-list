@@ -1,11 +1,10 @@
-<h2>your lists</h2>
+<h2 class="text-white my-5 text-center">your lists</h2>
 
 <ul class="list-group">
   <% @lists.each do |list| %>
     <li class="list-group-item">
       <%= link_to list.name, list_path(list) %>
+      <span class="text-muted"> - <%= list.bookmarks.length %> movies</span>
     </li>
   <% end %>
 </ul>
-
-<%= link_to "create new list", new_list_path, class: "btn btn-primary" %>
