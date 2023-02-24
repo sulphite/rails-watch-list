@@ -12,17 +12,17 @@ class BookmarksController < ApplicationController
   end
 
   def create
-    p params[:bookmark][:movie].drop(1)
-
-    @bookmark = Bookmark.new(bookmark_params)
-    # we can get the list id from the url, theres no need to worry about
-    # funny business in a form and therefore no need to permit list_id
-    @bookmark.list = @list
-    if @bookmark.save
-      redirect_to list_path(@list)
-    else
-      render :new, status: :unprocessable_entity
+    movies = params[:bookmark][:movie].drop(1).each do |movie|
+      @bookmark = Bookmark.new(bookmark_params)
+      @bookmark.movie = Movie.find(movie)
+      # we can get the list id from the url, theres no need to worry about
+      # funny business in a form and therefore no need to permit list_id
+      @bookmark.list = @list
+      unless @bookmark.save
+        return render :new, status: :unprocessable_entity
+      end
     end
+    redirect_to list_path(@list)
   end
 
   def destroy
@@ -39,6 +39,6 @@ class BookmarksController < ApplicationController
   end
 
   def bookmark_params
-    params.require(:bookmark).permit(:comment, :movie_id)
+    params.require(:bookmark).permit(:comment)
   end
 end
