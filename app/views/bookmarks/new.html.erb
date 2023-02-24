@@ -2,7 +2,7 @@
 <h1>new bookmark</h1>
 
 <%= simple_form_for [@list, @bookmark] do |f| %>
-  <%= f.association :movie %>
+  <%= f.input :movie, collection: Movie.all, input_html: {multiple: true, data: {controller: "tom-select", tom_select_options_value: {tags: true}}} %>
   <%= f.input :comment %>
   <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>

@@ -12,6 +12,8 @@ class BookmarksController < ApplicationController
   end
 
   def create
+    p params[:bookmark][:movie].drop(1)
+
     @bookmark = Bookmark.new(bookmark_params)
     # we can get the list id from the url, theres no need to worry about
     # funny business in a form and therefore no need to permit list_id
