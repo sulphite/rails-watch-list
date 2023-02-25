@@ -2,9 +2,12 @@
 
 <ul class="list-group">
   <% @lists.each do |list| %>
-    <li class="list-group-item">
-      <%= link_to list.name, list_path(list) %>
-      <span class="text-muted"> - <%= list.bookmarks.length %> movies</span>
-    </li>
+    <%= link_to list_path(list), class: "text-decoration-none" do %>
+      <li class="list-group-item">
+        <%= list.image.attached? ? ( cl_image_tag list.image.key, height: 100, width: 100, crop: :fill ) : "" %>
+        <%= list.name %>
+        <span class="text-muted"> - <%= list.bookmarks.length %> movies</span>
+      </li>
+    <% end %>
   <% end %>
 </ul>
