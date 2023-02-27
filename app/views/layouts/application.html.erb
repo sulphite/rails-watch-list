@@ -7,6 +7,7 @@
     <%= csp_meta_tag %>
     <%# <link href="tom-select.bootstrap4.css" rel="stylesheet" /> %>
     <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+    <%# we have to separately load tomselect via cdn because there is a weird conflict if you try to precompile using sass %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
